@@ -9,15 +9,21 @@ export const PatientForm = () => {
     const addPatient = usePatientStore(state => state.addPatient)
     const activeId = usePatientStore(state => state.activeId)
     const patients = usePatientStore(state => state.patients)
+    const updatePatient = usePatientStore(state => state.updatePatient)
 
     const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm<DraftPatient>()
 
     const registerPatient = (data: DraftPatient) => {
-        addPatient(data);
+        if (activeId) {
+            updatePatient(data)
+        } else {
+
+            addPatient(data);
+        }
         reset()
     }
 
-    useEffect( () => {
+    useEffect(() => {
         if (activeId) {
             const activePatient = patients.filter(patient => patient.id === activeId)[0]
             setValue("name", activePatient.name)
