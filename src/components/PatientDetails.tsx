@@ -1,3 +1,4 @@
+import {toast} from 'react-toastify'
 import { Patient } from '../types/index';
 import { PatientDetailItem } from './PatientDetailItem';
 import { usePatientStore } from '../store';
@@ -10,6 +11,10 @@ export const PatientDetails = ({patient} : PatientDetailsProps) => {
 
   const deletePatient = usePatientStore(state => state.deletePatient)
   const getPatientById = usePatientStore(state => state.getPatientById)
+  const handleClick = () => {
+    deletePatient(patient.id)
+    toast.error('Paciente Eliminado con exito')
+  }
   
   return (
     <div className='mx-5 my-10 px-5 py-10 bg-white shadow-md rounded-lg'>
@@ -27,7 +32,7 @@ export const PatientDetails = ({patient} : PatientDetailsProps) => {
         </button>
         <button 
           className="py-2 px-10 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg uppercase cursor-pointer"
-            onClick={() => deletePatient(patient.id)}
+            onClick={handleClick}
           > Eliminar
           </button>
        </div>
