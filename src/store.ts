@@ -35,7 +35,6 @@ export const usePatientStore = create<PatientState>()(
     },
 
     getPatientById: (id) => {
-        console.log(id);
         set(()=>({
             activeId : id
         }))

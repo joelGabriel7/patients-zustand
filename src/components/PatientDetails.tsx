@@ -21,12 +21,12 @@ export const PatientDetails = ({patient} : PatientDetailsProps) => {
        <PatientDetailItem  label='Sintomas' data={patient.symptoms}/>
 
        <div className="flex flex-col lg:flex-row justify-between gap-3 mt-10">
-        <button className="py-2 px-10 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg uppercase"
+        <button className="py-2 px-10 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg uppercase cursor-pointer"
         onClick={() => getPatientById(patient.id)}
         >Editar
         </button>
         <button 
-          className="py-2 px-10 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg uppercase"
+          className="py-2 px-10 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg uppercase cursor-pointer"
             onClick={() => deletePatient(patient.id)}
           > Eliminar
           </button>
