@@ -2,7 +2,7 @@
 import { create } from "zustand";
 import { DraftPatient, Patient } from './types/index';
 import { v4 as uuid } from "uuid";
-import { devtools } from "zustand/middleware";
+import { devtools, persist } from "zustand/middleware";
 
 
 type PatientState = {
@@ -19,7 +19,8 @@ const createPatient = (patient: DraftPatient) : Patient => {
 }
 
 export const usePatientStore = create<PatientState>()(
-    devtools((set) => ({
+    devtools(
+    persist((set) => ({
     patients: [],
     activeId: '',
 
@@ -51,4 +52,9 @@ export const usePatientStore = create<PatientState>()(
 
     }
 
-})))
+    }), {
+        // Save on LS
+        name: "patient-zustand-storage"
+    })
+
+))
