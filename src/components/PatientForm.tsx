@@ -4,13 +4,14 @@ import { DraftPatient } from "../types";
 import { usePatientStore } from '../store';
 
 export const PatientForm = () => {
-    
+
     const addPatient = usePatientStore(state => state.addPatient)
 
-    const { register, handleSubmit, formState: { errors } } = useForm<DraftPatient>()
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<DraftPatient>()
 
     const registerPatient = (data: DraftPatient) => {
         addPatient(data);
+        reset()
     }
 
     return (
